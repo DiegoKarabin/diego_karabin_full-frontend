@@ -6,7 +6,7 @@ import type { SpotifyAlbum } from '@/types/spotify';
 interface AlbumsGridProps {
   albums: SpotifyAlbum[];
   savedStatuses: Record<string, boolean>;
-  onDeleteAlbum: () => void;
+  onDeleteAlbum?: () => void;
 }
 
 export default function AlbumsGrid({ albums, savedStatuses, onDeleteAlbum }: AlbumsGridProps) {
