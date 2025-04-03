@@ -2,14 +2,14 @@
 
 import type { SpotifyAlbum, SpotifyPaging } from '@/types/spotify';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+import { authOptions } from '@/app/api/auth/config';
 import { SpotifyService } from '@/lib/spotify-service';
 import { DEFAULT_SEARCH_LIMIT } from '@/lib/constants';
+
 interface SearchState {
   data?: SpotifyPaging<SpotifyAlbum>;
   error?: string;
 }
-
 
 export async function searchAlbum(prevState: SearchState, formData: FormData) {
   try {
