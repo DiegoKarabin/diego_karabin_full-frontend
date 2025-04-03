@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: `Login | ${process.env.NEXT_PUBLIC_APP_NAME}`,
-  description: 'Sign in to save your favorite albums.',
+  description: 'Accede a tu cuenta para guardar tus álbumes favoritos.',
 };
 
 export default function LoginLayout({

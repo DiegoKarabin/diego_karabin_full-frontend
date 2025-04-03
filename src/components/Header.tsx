@@ -3,7 +3,8 @@
 import { useSession, signOut } from 'next-auth/react';
 import Link from 'next/link';
 import { useState } from 'react';
-
+import NavLink from './NavLink';
+import Image from 'next/image';
 export default function Header() {
   const { data: session } = useSession();
   const [isLoggingOut, setIsLoggingOut] = useState(false);
@@ -21,30 +22,50 @@ export default function Header() {
 
   return (
     <header className="flex items-center justify-between p-[31.5px]">
-      <Link href="/" className="text-md uppercase font-medium">
+      <Link href="/" className="text-md uppercase font-medium block sm:hidden">
+        {process.env.NEXT_PUBLIC_APP_NAME?.split(' ').map((word) => word[0]).join('')}
+      </Link>
+      <Link href="/" className="text-md uppercase font-medium hidden sm:block">
         {process.env.NEXT_PUBLIC_APP_NAME}
       </Link>
 
       {session && (
-        <nav className="flex items-center gap-4 md:gap-6 lg:gap-8 text-sm">
-          <Link
-            href="/search"
-            className="text-[#CCFF00]"
-          >
-            Buscar
-          </Link>
-          <Link
-            href="/my-albums"
-            className="text-gray-400 hover:text-white transition-colors"
-          >
-            My albums
-          </Link>
+        <nav className="flex items-stretch gap-3 md:gap-10 text-sm">
+          <NavLink href="/search">Buscar</NavLink>
+          <NavLink href="/my-albums">Mis álbumes</NavLink>
           <button
             onClick={handleLogout}
             disabled={isLoggingOut}
-            className="text-gray-400 hover:text-white transition-colors"
+            className="hidden md:block text-white hover:text-gray-400 transition-colors border-l-1 border-white sm:pl-10"
           >
-            {isLoggingOut ? 'Logging out...' : 'Cerrar sesión'}
+            {isLoggingOut ? 'Cerrando sesión...' : 'Cerrar sesión'}
+          </button>
+          <button
+            onClick={handleLogout}
+            disabled={isLoggingOut}
+            className="block md:hidden text-white hover:text-gray-400 transition-colors border-l-1 border-white pl-3 md:px-10"
+          >
+            <Image
+              width={24}
+              height={18}
+              src="/logout.svg"
+              alt="Logout"
+              className="object-contain"
+              priority
+            />
+          </button>
+
+          <button
+            className="text-center text-white hover:text-gray-400 transition-colors border-l-1 border-white pl-3 md:pl-10 lg:hidden"
+          >
+            <Image
+              width={24}
+              height={24}
+              src="/sun.svg"
+              alt="Light mode"
+              className="object-contain"
+              priority
+            />
           </button>
         </nav>
       )}
