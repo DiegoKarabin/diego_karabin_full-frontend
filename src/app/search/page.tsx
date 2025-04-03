@@ -1,33 +1,22 @@
 import { Metadata } from 'next';
 import { Suspense } from 'react';
+import { PageProps } from '@/types/next-dynamic-pages';
 import FullPageLoader from '@/components/FullPageLoader';
 import SearchMainContent from '@/components/search/SearchMainContent';
 
 export const metadata: Metadata = {
-  title: `Search Artists | ${process.env.NEXT_PUBLIC_APP_NAME}`,
-  description: 'Search and find your favorite artists.',
+  title: `Buscar Álbumes | ${process.env.NEXT_PUBLIC_APP_NAME}`,
+  description: 'Busca los álbumes de tus artistas favoritos.',
 };
 
-interface SearchPageProps {
-  searchParams: {
-    q: string;
-    page: string;
-  };
-}
+export default async function SearchPage({ searchParams }: PageProps) {
+  const { q, page } = await searchParams;
 
-export default function SearchPage(
-  {
-    searchParams: {
-      q: initialQuery,
-      page: initialPage,
-    },
-  }: SearchPageProps
-) {
   return (
     <Suspense fallback={<FullPageLoader />}>
       <SearchMainContent
-        initialQuery={initialQuery}
-        initialPage={initialPage}
+        initialQuery={q as string}
+        initialPage={page as string}
       />
     </Suspense>
   );
