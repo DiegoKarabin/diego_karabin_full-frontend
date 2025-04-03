@@ -1,8 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter, Montserrat } from 'next/font/google';
 import './globals.css';
-import { Providers } from './providers';
-import Header from '@/components/Header';
+import ClientLayout from '@/app/client-layout';
 
 const inter = Inter({ subsets: ['latin'] });
 const montserrat = Montserrat({
@@ -24,12 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={montserrat.variable}>
       <body className={`${inter.className} min-h-screen bg-black text-white antialiased font-montserrat ${montserrat.className}`}>
-        <Providers>
-          <main className="min-h-screen bg-[#171717] text-white">
-            <Header />
-            {children}
-          </main>
-        </Providers>
+        <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
   );
