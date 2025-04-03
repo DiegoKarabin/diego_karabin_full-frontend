@@ -1,16 +1,13 @@
-import ArtistCardSkeleton from '@/components/ArtistCardSkeleton';
+import AlbumsGridSkeleton from '@/components/commons/AlbumsGridSkeleton';
+import { DEFAULT_SEARCH_LIMIT } from '@/lib/constants';
 
 export default function SearchResultsLoading({ artistName }: { artistName: string }) {
   return (
     <div className="mt-8">
-      <h2 className="text-2xl font-bold mb-6">
+      <p className="mb-6">
         Buscando resultados para &ldquo;{artistName}&rdquo;
-      </h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-        {Array.from({ length: 4 }).map((_, index) => (
-          <ArtistCardSkeleton key={index} />
-        ))}
-      </div>
+      </p>
+      <AlbumsGridSkeleton albumsCount={DEFAULT_SEARCH_LIMIT} />
     </div>
   );
 }

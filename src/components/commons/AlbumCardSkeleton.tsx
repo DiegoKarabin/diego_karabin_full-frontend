@@ -1,4 +1,4 @@
-export default function ArtistCardSkeleton() {
+export default function AlbumCardSkeleton() {
   return (
     <div className="rounded-3xl overflow-hidden p-6 animate-pulse">
       <div className="relative w-full aspect-square rounded-xl overflow-hidden bg-[#252525]">

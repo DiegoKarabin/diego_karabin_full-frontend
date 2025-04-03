@@ -1,25 +1,27 @@
 'use client';
 
-import { SpotifyArtist } from '@/types/spotify';
-import SearchResultsGrid from '@/components/search/SearchResultsGrid';
+import { SpotifyAlbum } from '@/types/spotify';
+import AlbumsGrid from '@/components/commons/AlbumsGrid';
 
 interface SearchResultsSectionProps {
   artistName: string;
-  results: SpotifyArtist[];
+  results: SpotifyAlbum[];
+  savedStatuses: Record<string, boolean>;
 }
 
 export default function SearchResultsSection({
   artistName,
   results,
+  savedStatuses,
 }: SearchResultsSectionProps) {
   if (!artistName) return null;
 
   return (
     <div className="mt-8">
-      <h2 className="text-2xl font-bold mb-6">
+      <p className="mb-6">
         Guarda tus álbumes favoritos de {artistName}
-      </h2>
-      <SearchResultsGrid results={results} />
+      </p>
+      <AlbumsGrid albums={results} savedStatuses={savedStatuses}/>
     </div>
   );
 }

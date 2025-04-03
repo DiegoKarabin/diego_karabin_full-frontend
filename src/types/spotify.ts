@@ -13,6 +13,14 @@ export interface SpotifyArtist {
   };
 }
 
+export interface SpotifyAlbum {
+  id: string;
+  name: string;
+  images: SpotifyImage[];
+  releaseDate: string;
+  artists: string[];
+}
+
 export interface SpotifyPaging<T> {
   items: T[];
   total: number;
@@ -21,3 +29,5 @@ export interface SpotifyPaging<T> {
   next: string | null;
   previous: string | null;
 }
+
+export type SearchType = 'artist' | 'album';
